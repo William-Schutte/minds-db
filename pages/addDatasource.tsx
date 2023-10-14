@@ -3,6 +3,7 @@ import styled from "styled-components";
 import Layout from "./layout";
 import ContentContainer from "@/components/page/ContentContainer";
 import TipBox from "@/components/page/TipBox";
+import DataSources from "@/components/page/DataSources";
 
 const HeaderText = styled.h2`
   font-size: 20px;
@@ -39,7 +40,7 @@ export default function Home() {
           text="Write datasource name in the editor to print the form template."
           iconSrc="/icons/general/light-bulb-on.svg"
         />
-        {/* <DataSources></DataSources> */}
+        <DataSources />
       </ContentContainer>
     </Layout>
   );

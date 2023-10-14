@@ -4,11 +4,12 @@ import { ThemeProvider } from "styled-components";
 
 const mindsDBTheme = {
   colors: {
-    zinc100: "#d4d4d8",
+    zinc50: "#FAFAFA",
+    zinc100: "#D4D4D8",
     zinc200: "#E4E4E7",
     zinc500: "#71717A",
     zinc600: "#52525B",
-    zinc950: "#52525B",
+    zinc950: "#09090B",
   },
   cool: "dddddd",
 };

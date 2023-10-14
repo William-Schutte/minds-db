@@ -4,10 +4,11 @@ import styled from "styled-components";
 const TipBoxContainer = styled.div`
   width: 100%;
   border: 1px solid ${(props) => props.theme.colors.zinc200};
-  background: #fafafa;
+  background: ${(props) => props.theme.colors.zinc50};
   border-radius: 8px;
   padding: 16px;
   display: flex;
+  margin-bottom: 16px;
 `;
 
 const TipIcon = styled(Image)`
