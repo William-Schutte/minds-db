@@ -15,14 +15,23 @@ const NavContainer = styled.nav`
 export default function SideNav() {
   return (
     <NavContainer>
-      <NavIcon page="/" isActive={false} logoSrc="/minds-logo-black.svg" />
+      <NavIcon
+        page="/"
+        isActive={false}
+        logoSrc="/icons/mindsdb/minds-logo-black.svg"
+      />
       <NavIcon
         size={20}
         page="/"
         isActive={true}
-        logoSrc="/code-brackets-white.svg"
+        logoSrc="/icons/general/code-brackets-white.svg"
       />
-      <NavIcon size={24} page="/" isActive={false} logoSrc="icon-robot.svg" />
+      <NavIcon
+        size={24}
+        page="/"
+        isActive={false}
+        logoSrc="/icons/general/icon-robot.svg"
+      />
     </NavContainer>
   );
 }
