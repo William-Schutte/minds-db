@@ -1,9 +1,8 @@
-### MindsDB Takehome Assessment
+# MindsDB Takehome Assessment
+
+### [View this project here](https://minds-db-interview.vercel.app/)
 
 Completed by William Schutte.
-
-(View this project here)[https://minds-db-interview.vercel.app/]
-
 - https://github.com/William-Schutte/minds-db
 - https://www.linkedin.com/in/william-Schutte
 - https://www.wschutte.com/
@@ -41,3 +40,4 @@ The app is organized as such:
 - `components/credentials` Components used on the credentials page
 - `components/navbars` Navbar compoents (used in layout)
 - `components/page` General components used throughout the app
+- `redux` Folder for redux store and slices
