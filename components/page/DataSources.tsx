@@ -2,10 +2,9 @@ import Image from "next/image";
 import { useState } from "react";
 import styled from "styled-components";
 import DataSourceItem from "./DataSourceItem";
-
-const sources: Array<any> = [
-  { label: "MongoDB", imageSrc: "/icons/dataSources/mongo-db.svg", value: "1" },
-];
+import { useSelector } from "react-redux";
+import { DataSource } from "@/redux/slices/dataSourcesMock";
+import { selectItemsByQueryAndFilter } from "@/redux/slices/dataSourcesSlice";
 
 const QueryInputContainer = styled.div`
   border: 1px solid ${(props) => props.theme.colors.zinc200};
@@ -57,6 +56,10 @@ export default function DataSources() {
   const [queryText, setQueryText] = useState("");
   const [filterBy, setFilterBy] = useState("");
 
+  const dataSources: Array<DataSource> = useSelector((state) =>
+    selectItemsByQueryAndFilter(state, queryText, filterBy)
+  );
+
   return (
     <>
       {/* Search and Filter */}
@@ -82,16 +85,22 @@ export default function DataSources() {
             onChange={(e) => setQueryText(e.target.value)}
           />
         </QueryInputContainer>
+        {/* Obviously this filter is dumb but it as an example of how filtering by some 
+        additional property would work */}
         <FilterDropdown onChange={(e) => setFilterBy(e.target.value)}>
           <option value="">Filter by</option>
-          <option value="filter1">1</option>
-          <option value="filter2">2</option>
+          <option value="haveHeardOf">Will has heard of</option>
+          <option value="haveNotHeardOf">Will has not heard of</option>
         </FilterDropdown>
       </div>
       {/* Sources Grid */}
       <SourcesContainer>
-        {sources.map((item) => (
-          <DataSourceItem dataSource={item} onClick={(val: any) => {}} />
+        {dataSources.map((item) => (
+          <DataSourceItem
+            dataSource={item}
+            onClick={(val: any) => {}}
+            key={item.id}
+          />
         ))}
       </SourcesContainer>
     </>
