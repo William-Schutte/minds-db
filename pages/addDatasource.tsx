@@ -2,8 +2,8 @@ import styled from "styled-components";
 
 import Layout from "./layout";
 import ContentContainer from "@/components/page/ContentContainer";
-import TipBox from "@/components/page/TipBox";
-import DataSources from "@/components/page/DataSources";
+import TipBox from "@/components/addDataSource/TipBox";
+import DataSources from "@/components/addDataSource/DataSources";
 
 const HeaderText = styled.h2`
   font-size: 20px;

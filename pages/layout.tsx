@@ -13,7 +13,10 @@ const VerticalContent = styled.div`
   display: flex;
   width: 100%;
   flex-direction: column;
+  height: 100vh;
+  align-items: center;
 `;
+
 export default function Layout({ children }: { children: ReactNode }) {
   return (
     <PageContainer>

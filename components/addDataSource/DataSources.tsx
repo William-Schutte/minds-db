@@ -2,9 +2,13 @@ import Image from "next/image";
 import { useState } from "react";
 import styled from "styled-components";
 import DataSourceItem from "./DataSourceItem";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { DataSource } from "@/redux/slices/dataSourcesMock";
-import { selectItemsByQueryAndFilter } from "@/redux/slices/dataSourcesSlice";
+import {
+  selectDataSource,
+  selectItemsByQueryAndFilter,
+} from "@/redux/slices/dataSourcesSlice";
+import { useRouter } from "next/router";
 
 const QueryInputContainer = styled.div`
   border: 1px solid ${(props) => props.theme.colors.zinc200};
@@ -53,16 +57,22 @@ const SourcesContainer = styled.div`
 `;
 
 export default function DataSources() {
+  // Router for proceding to next page on source select
+  const router = useRouter();
+
+  // State for query search and filterBy
   const [queryText, setQueryText] = useState("");
   const [filterBy, setFilterBy] = useState("");
+  const dispatch = useDispatch();
 
+  // Pull in data sources from Redux store using above query and filter
   const dataSources: Array<DataSource> = useSelector((state) =>
     selectItemsByQueryAndFilter(state, queryText, filterBy)
   );
 
   return (
     <>
-      {/* Search and Filter */}
+      {/* Search and Filter Section */}
       <div
         style={{
           display: "flex",
@@ -93,12 +103,15 @@ export default function DataSources() {
           <option value="haveNotHeardOf">Will has not heard of</option>
         </FilterDropdown>
       </div>
-      {/* Sources Grid */}
+      {/* Data Sources Grid */}
       <SourcesContainer>
         {dataSources.map((item) => (
           <DataSourceItem
             dataSource={item}
-            onClick={(val: any) => {}}
+            onClick={() => {
+              dispatch(selectDataSource(item.id));
+              router.push("credentials");
+            }}
             key={item.id}
           />
         ))}

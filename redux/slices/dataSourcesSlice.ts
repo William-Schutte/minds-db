@@ -5,17 +5,33 @@ import dataSourcesMock, { DataSource } from "./dataSourcesMock";
 // (could use redux thunk or react query)
 const initialState = {
   items: dataSourcesMock,
+  selectedSource: 0,
 };
 
 const dataSourcesSlice = createSlice({
   name: "dataSources",
   initialState,
   reducers: {
-    addDataSource: (state, newSource) => {
-      state.items.push(newSource.payload);
+    selectDataSource: (state, newSource) => {
+      state.selectedSource = newSource.payload;
+    },
+    unselectDataSource: (state) => {
+      state.selectedSource = 0;
     },
   },
 });
+
+export const getSelectedSource = createSelector(
+  (state) => ({
+    items: state.dataSources.items,
+    selectedId: state.dataSources.selectedSource,
+  }),
+  (data) => {
+    const { items, selectedId } = data as any;
+    if (selectedId === 0) return null;
+    return items.find((item: DataSource) => item.id === selectedId);
+  }
+);
 
 export const selectItemsByQueryAndFilter = createSelector(
   (state) => state.dataSources.items, // Give all items to the selector
@@ -46,5 +62,6 @@ export const selectItemsByQueryAndFilter = createSelector(
   }
 );
 
-export const { addDataSource } = dataSourcesSlice.actions;
+export const { selectDataSource, unselectDataSource } =
+  dataSourcesSlice.actions;
 export default dataSourcesSlice.reducer;
